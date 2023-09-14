@@ -1,18 +1,19 @@
 import { Grid, GridItem, Show, Text } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
 
 function App() {
-  const navBarHeight = "64px";
+  const navBarHeight = "56px";
 
   return (
-    <Grid templateColumns={{base:"200px 1fr", xl:"300px 1fr"}}>
+    <Grid templateColumns={{ base: "200px 1fr", xl: "300px 1fr" }}>
       <GridItem
         position={{ base: "fixed", md: "static" }}
         colSpan={2}
-        bg="orange"
+        // bg="orange"
         h={navBarHeight}
         width="100%"
       >
-        NavBar
+        <NavBar />
       </GridItem>
       <Show above="md">
         <GridItem
