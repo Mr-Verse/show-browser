@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import apiClient, { AxiosError, CanceledError } from "../services/apiClient";
+import { useData } from "./useData";
 
 interface Ids {
   simkl_id: number;
@@ -16,9 +15,7 @@ interface Imdb {
   votes: number;
 }
 
-export interface Movie {
-  title: string;
-  year: number;
+export interface MovieTrending {
   poster: string;
   ids: Ids;
   release_date: string;
@@ -29,29 +26,11 @@ export interface Movie {
 export type Interval = "today" | "week" | "month";
 
 export function useMoviesTrending(interval: Interval) {
-  const [moviesTrending, setMoviesTrending] = useState<Movie[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-
-    const controller = new AbortController();
-    apiClient
-      .get<Movie[]>(`/movies/trending/${interval}`, {
-        signal: controller.signal,
-      })
-      .then((res) => {
-        setLoading(false);
-        setMoviesTrending(res.data);
-      })
-      .catch((error) => {
-        if (error instanceof CanceledError) return;
-        setError((error as AxiosError).message);
-        setLoading(false);
-      });
-    return () => controller.abort();
-  }, [interval]);
+  const {
+    data: moviesTrending,
+    error,
+    isLoading,
+  } = useData<MovieTrending>(`/movies/trending/${interval}`, [interval]);
 
   return { moviesTrending, error, isLoading };
 }
