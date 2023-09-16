@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show, Text } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
-import MoviesTrending from "./components/MoviesTrending";
+import MoviesTrendingContainer from "./components/MoviesTrendingContainer";
+import TVSeriesTrendingContainer from "./components/TVSeriesTrendingContainer";
 
 function App() {
   const navBarHeight = "56px";
@@ -32,9 +33,10 @@ function App() {
         mt={{ base: navBarHeight, md: 0 }}
         height={`calc(100vh - ${navBarHeight})`}
         overflowY="auto"
-        // bg="blue.300"
+        // bg="blue.300"w
       >
-        <MoviesTrending interval="month" />
+        <TVSeriesTrendingContainer interval="week"/>
+        <MoviesTrendingContainer interval="week" />
       </GridItem>
     </Grid>
   );

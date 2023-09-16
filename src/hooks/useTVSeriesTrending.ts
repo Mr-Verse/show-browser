@@ -13,22 +13,25 @@ interface Imdb {
   votes: number;
 }
 
-export interface MovieTrending {
+export interface TVSeriesTrending {
   poster: string;
   ids: Ids;
   release_date: string;
   ratings: Ratings;
+  runtime: string;
   status: string;
+  total_episodes: number;
+  network: string;
 }
 
 export type Interval = "today" | "week" | "month";
 
-export function useMoviesTrending(interval: Interval) {
+export function useTVSeriesTrending(interval: Interval) {
   const {
-    data: moviesTrending,
+    data: tvSeriesTrending,
     error,
     isLoading,
-  } = useData<MovieTrending>(`/movies/trending/${interval}`, [interval]);
+  } = useData<TVSeriesTrending>(`/tv/trending/${interval}`, [interval]);
 
-  return { moviesTrending, error, isLoading };
+  return { tvSeriesTrending, error, isLoading };
 }

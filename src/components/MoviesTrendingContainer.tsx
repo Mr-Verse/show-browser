@@ -1,13 +1,13 @@
 import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import MovieTrendingCard from "./MovieTrendingCard";
 import { Interval, useMoviesTrending } from "../hooks/useMoviesTrending";
-import MovieCardSkeleton from "./MovieCardSkeleton";
+import MovieTrendingCardSkeleton from "./MovieTrendingCardSkeleton";
 
 interface Props {
   interval: Interval;
 }
 
-const MoviesTrending = ({ interval }: Props) => {
+const MoviesTrendingContainer = ({ interval }: Props) => {
   const { moviesTrending, error, isLoading } = useMoviesTrending(interval);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -27,7 +27,7 @@ const MoviesTrending = ({ interval }: Props) => {
         spacing={{ base: "12px" }}
       >
         {isLoading &&
-          skeletons.map((Skeleton) => <MovieCardSkeleton key={Skeleton} />)}
+          skeletons.map((Skeleton) => <MovieTrendingCardSkeleton key={Skeleton} />)}
         {moviesTrending.map((movieTrending) => (
           <MovieTrendingCard
             key={movieTrending.ids.simkl_id}
@@ -39,4 +39,4 @@ const MoviesTrending = ({ interval }: Props) => {
   );
 };
 
-export default MoviesTrending;
+export default MoviesTrendingContainer;
