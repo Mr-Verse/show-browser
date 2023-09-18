@@ -1,7 +1,7 @@
 import { CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
 import CardAutoWidth from "./CardAutoWidth";
 
-const TVSeriesBestCardSkeleton = () => {
+const AnimeBestCardSkeleton = () => {
   return (
     <CardAutoWidth>
       <Skeleton height={{ base: "250px", lg: "200px" }} />
@@ -12,4 +12,4 @@ const TVSeriesBestCardSkeleton = () => {
   );
 };
 
-export default TVSeriesBestCardSkeleton;
+export default AnimeBestCardSkeleton;
