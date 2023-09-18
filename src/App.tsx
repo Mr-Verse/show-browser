@@ -5,6 +5,7 @@ import TVSeriesTrendingContainer from "./components/TVSeriesTrendingContainer";
 import TVSeriesBestContainer from "./components/TVSeriesBestContainer";
 import CategoryList from "./components/CategoryList";
 import { useState } from "react";
+import AnimeTrendingContainer from "./components/AnimeTrendingContainer";
 
 export type CategoryName = "Movies" | "TV Series" | "Anime";
 
@@ -50,11 +51,12 @@ function App() {
           <TVSeriesTrendingContainer interval="week" />
         )}
         {categoryName === "TV Series" && (
-          <TVSeriesBestContainer filter="year" />
+          <TVSeriesBestContainer filter="month" />
         )}
         {categoryName === "Movies" && (
           <MoviesTrendingContainer interval="week" />
         )}
+        {categoryName === "Anime" && <AnimeTrendingContainer interval="week" />}
       </GridItem>
     </Grid>
   );
