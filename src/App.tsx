@@ -1,11 +1,16 @@
-import { Grid, GridItem, Show, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import MoviesTrendingContainer from "./components/MoviesTrendingContainer";
 import TVSeriesTrendingContainer from "./components/TVSeriesTrendingContainer";
 import TVSeriesBestContainer from "./components/TVSeriesBestContainer";
+import CategoryList from "./components/CategoryList";
+import { useState } from "react";
+
+export type CategoryName = "Movies" | "TV Series" | "Anime";
 
 function App() {
   const navBarHeight = "56px";
+  const [categoryName, setCategoryName] = useState<CategoryName>("Movies");
 
   return (
     <Grid templateColumns={{ base: "200px 1fr", xl: "300px 1fr" }}>
@@ -15,6 +20,7 @@ function App() {
         // bg="orange"
         h={navBarHeight}
         width="100%"
+        boxShadow="md"
       >
         <NavBar />
       </GridItem>
@@ -22,11 +28,15 @@ function App() {
         <GridItem
           mt={{ base: navBarHeight, md: 0 }}
           // bg="purple.400"
-          border="1px dashed"
           height={`calc(100vh - ${navBarHeight})`}
           overflowY="auto"
+          p="8px"
+          boxShadow="2xl"
         >
-          <Text>Aside</Text>
+          <CategoryList
+            onCategorySelect={(categoryName) => setCategoryName(categoryName)}
+            selectedCategoryName={categoryName}
+          />
         </GridItem>
       </Show>
       <GridItem
@@ -36,9 +46,15 @@ function App() {
         overflowY="auto"
         // bg="blue.300"w
       >
-        <TVSeriesTrendingContainer interval="week" />
-        <TVSeriesBestContainer filter="year" />
-        <MoviesTrendingContainer interval="week" />
+        {categoryName === "TV Series" && (
+          <TVSeriesTrendingContainer interval="week" />
+        )}
+        {categoryName === "TV Series" && (
+          <TVSeriesBestContainer filter="year" />
+        )}
+        {categoryName === "Movies" && (
+          <MoviesTrendingContainer interval="week" />
+        )}
       </GridItem>
     </Grid>
   );
