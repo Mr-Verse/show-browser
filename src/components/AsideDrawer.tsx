@@ -48,7 +48,7 @@ const AsideDrawer = ({
 
         <DrawerFooter>
           <Button variant="outline" colorScheme="gray" mr={3} onClick={onClose}>
-            Cancel
+            Close
           </Button>
         </DrawerFooter>
       </DrawerContent>
