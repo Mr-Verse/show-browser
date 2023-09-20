@@ -1,3 +1,4 @@
+import { Filter } from "../model/Filter";
 import { useData } from "./useData";
 
 interface Ids {
@@ -21,7 +22,6 @@ export interface TVSeriesBest {
   ratings: Ratings;
 }
 
-export type Filter = "year" | "month" | "all";
 
 export function useTVSeriesBest(filter: Filter) {
   const {

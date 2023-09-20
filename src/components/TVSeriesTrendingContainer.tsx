@@ -1,7 +1,8 @@
 import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
-import { Interval, useTVSeriesTrending } from "../hooks/useTVSeriesTrending";
+import { useTVSeriesTrending } from "../hooks/useTVSeriesTrending";
 import TVSeriesTrendingCardSkeleton from "./TVSeriesTrendingCardSkeleton";
 import TVSeriesTrendingCard from "./TVSeriesTrendingCard";
+import { Interval } from "../model/Interval";
 
 interface Props {
   interval: Interval;

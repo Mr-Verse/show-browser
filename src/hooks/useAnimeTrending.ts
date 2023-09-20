@@ -1,3 +1,4 @@
+import { Interval } from "../model/Interval";
 import { useData } from "./useData";
 
 interface Ids {
@@ -22,8 +23,6 @@ export interface AnimeTrending {
   status: string;
   total_episodes: number;
 }
-
-export type Interval = "today" | "week" | "month";
 
 export function useAnimeTrending(interval: Interval) {
   const {

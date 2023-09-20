@@ -1,7 +1,8 @@
 import { Box, Grid, Heading, Text } from "@chakra-ui/react";
-import { Filter, useTVSeriesBest } from "../hooks/useTVSeriesBest";
+import { useTVSeriesBest } from "../hooks/useTVSeriesBest";
 import TVSeriesBestCardSkeleton from "./TVSeriesBestCardSkeleton";
 import TVSeriesBestCard from "./TVSeriesBestCard";
+import { Filter } from "../model/Filter";
 
 interface Props {
   filter: Filter;

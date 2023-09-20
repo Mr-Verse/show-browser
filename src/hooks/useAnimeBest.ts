@@ -1,3 +1,4 @@
+import { Filter } from "../model/Filter";
 import { useData } from "./useData";
 
 interface Ids {
@@ -20,8 +21,6 @@ export interface AnimeBest {
   ids: Ids;
   ratings: Ratings;
 }
-
-export type Filter = "year" | "month" | "all";
 
 export function useAnimeBest(filter: Filter) {
   const {

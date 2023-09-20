@@ -1,3 +1,4 @@
+import { Interval } from "../model/Interval";
 import { useData } from "./useData";
 
 interface Ids {
@@ -20,8 +21,6 @@ export interface MovieTrending {
   ratings: Ratings;
   status: string;
 }
-
-export type Interval = "today" | "week" | "month";
 
 export function useMoviesTrending(interval: Interval) {
   const {

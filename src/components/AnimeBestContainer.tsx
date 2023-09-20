@@ -1,7 +1,8 @@
 import { Box, Grid, Heading, Text } from "@chakra-ui/react";
-import { Filter, useAnimeBest } from "../hooks/useAnimeBest";
+import { useAnimeBest } from "../hooks/useAnimeBest";
 import AnimeBestCardSkeleton from "./AnimeBestCardSkeleton";
 import AnimeBestBestCard from "./AnimeBestCard";
+import { Filter } from "../model/Filter";
 
 interface Props {
   filter: Filter;

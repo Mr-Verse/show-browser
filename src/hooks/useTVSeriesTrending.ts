@@ -1,3 +1,4 @@
+import { Interval } from "../model/Interval";
 import { useData } from "./useData";
 
 interface Ids {
@@ -23,8 +24,6 @@ export interface TVSeriesTrending {
   total_episodes: number;
   network: string;
 }
-
-export type Interval = "today" | "week" | "month";
 
 export function useTVSeriesTrending(interval: Interval) {
   const {
