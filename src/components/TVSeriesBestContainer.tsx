@@ -1,4 +1,5 @@
-import { Box, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Grid, Heading, Icon, Text } from "@chakra-ui/react";
+import { TbSquareRoundedArrowRight } from "react-icons/tb";
 import { useTVSeriesBest } from "../hooks/useTVSeriesBest";
 import TVSeriesBestCardSkeleton from "./TVSeriesBestCardSkeleton";
 import TVSeriesBestCard from "./TVSeriesBestCard";
@@ -29,9 +30,27 @@ const TVSeriesBestContainer = ({ filter }: Props) => {
       <Grid
         overflowX="auto"
         gap="12px"
-        templateColumns={`repeat(${tvSeriesBest.length / 2},1fr)`}
+        templateColumns={
+          isLoading
+            ? `repeat(${skeletons.length / 2},1fr)`
+            : `repeat(${tvSeriesBest.length / 2},1fr)`
+        }
         paddingBottom="12px"
+        position="relative"
+        paddingLeft="48px"
       >
+        <Icon
+          as={TbSquareRoundedArrowRight}
+          position="absolute"
+          boxSize="32px"
+          top="15%"
+        />
+        <Icon
+          as={TbSquareRoundedArrowRight}
+          position="absolute"
+          boxSize="32px"
+          bottom="30%"
+        />
         {isLoading &&
           skeletons.map((Skeleton) => (
             <TVSeriesBestCardSkeleton key={Skeleton} />

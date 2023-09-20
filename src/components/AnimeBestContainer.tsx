@@ -1,8 +1,9 @@
-import { Box, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Grid, Heading, Icon, Text } from "@chakra-ui/react";
 import { useAnimeBest } from "../hooks/useAnimeBest";
 import AnimeBestCardSkeleton from "./AnimeBestCardSkeleton";
 import AnimeBestBestCard from "./AnimeBestCard";
 import { Filter } from "../model/Filter";
+import { TbSquareRoundedArrowRight } from "react-icons/tb";
 
 interface Props {
   filter: Filter;
@@ -29,9 +30,27 @@ const AnimeBestContainer = ({ filter }: Props) => {
       <Grid
         overflowX="auto"
         gap="12px"
-        templateColumns={`repeat(${animeBest.length / 2},1fr)`}
+        templateColumns={
+          isLoading
+            ? `repeat(${skeletons.length / 2},1fr)`
+            : `repeat(${animeBest.length / 2},1fr)`
+        }
         paddingBottom="12px"
+        position="relative"
+        paddingLeft="48px"
       >
+        <Icon
+          as={TbSquareRoundedArrowRight}
+          position="absolute"
+          boxSize="32px"
+          top="15%"
+        />
+        <Icon
+          as={TbSquareRoundedArrowRight}
+          position="absolute"
+          boxSize="32px"
+          bottom="30%"
+        />
         {isLoading &&
           skeletons.map((Skeleton) => <AnimeBestCardSkeleton key={Skeleton} />)}
         {animeBest.map((animeBest) => (

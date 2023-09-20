@@ -23,7 +23,7 @@ export interface AppQuery {
 
 function App() {
   const navBarHeight = "56px";
-  const [categoryName, setCategoryName] = useState<CategoryName>("Movies");
+  const [categoryName, setCategoryName] = useState<CategoryName>("TV Series");
   const [appQuery, setAppQuery] = useState<AppQuery>({
     movieTrendingInterval: "week",
     tvSeriesTrendingInterval: "week",
