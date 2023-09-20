@@ -12,12 +12,15 @@ import { GiPunch } from "react-icons/gi";
 import { CategoryName } from "../App";
 import { IconType } from "react-icons";
 
-interface Props {
+export interface CategoryListProps {
   onCategorySelect: (categoryName: CategoryName) => void;
   selectedCategoryName: CategoryName;
 }
 
-const CategoryList = ({ onCategorySelect, selectedCategoryName }: Props) => {
+const CategoryList = ({
+  onCategorySelect,
+  selectedCategoryName,
+}: CategoryListProps) => {
   const Categories: { name: CategoryName; icon: IconType }[] = [
     { name: "Movies", icon: BiCameraMovie },
     { name: "TV Series", icon: PiTelevisionSimpleBold },

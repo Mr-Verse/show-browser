@@ -3,7 +3,7 @@ import { AppQuery, CategoryName } from "../App";
 import { Interval } from "../model/Interval";
 import { Filter } from "../model/Filter";
 
-interface Props {
+export interface FilterListProps {
   categoryName: CategoryName;
   appQuery: AppQuery;
   onSelectMovieTrendingInterval: (interval: Interval) => void;
@@ -21,7 +21,7 @@ const FilterList = ({
   onSelectTVSeriesBestFilter,
   onSelectAnimeTrendingInterval,
   onSelectAnimeBestFilter,
-}: Props) => {
+}: FilterListProps) => {
   const intervalMap: { interval: Interval; label: string }[] = [
     { interval: "today", label: "Today" },
     { interval: "week", label: "This Week" },

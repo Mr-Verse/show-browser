@@ -3,11 +3,11 @@ import NavBar from "./components/NavBar";
 import MoviesTrendingContainer from "./components/MoviesTrendingContainer";
 import TVSeriesTrendingContainer from "./components/TVSeriesTrendingContainer";
 import TVSeriesBestContainer from "./components/TVSeriesBestContainer";
-import CategoryList from "./components/CategoryList";
+import CategoryList, { CategoryListProps } from "./components/CategoryList";
 import { useState } from "react";
 import AnimeTrendingContainer from "./components/AnimeTrendingContainer";
 import AnimeBestContainer from "./components/AnimeBestContainer";
-import FilterList from "./components/FilterList";
+import FilterList, { FilterListProps } from "./components/FilterList";
 import { Interval } from "./model/Interval";
 import { Filter } from "./model/Filter";
 
@@ -32,6 +32,32 @@ function App() {
     animeBestFilter: "month",
   } as AppQuery);
 
+  const categoryListProps: CategoryListProps = {
+    onCategorySelect: (categoryName: CategoryName) =>
+      setCategoryName(categoryName),
+    selectedCategoryName: categoryName,
+  };
+
+  const filterListProps: FilterListProps = {
+    categoryName: categoryName,
+    appQuery: appQuery,
+    onSelectMovieTrendingInterval: (interval: Interval) => {
+      setAppQuery({ ...appQuery, movieTrendingInterval: interval });
+    },
+    onSelectTVSeriesTrendingInterval: (interval: Interval) => {
+      setAppQuery({ ...appQuery, tvSeriesTrendingInterval: interval });
+    },
+    onSelectTVSeriesBestFilter: (filter: Filter) => {
+      setAppQuery({ ...appQuery, tvSeriesBestFilter: filter });
+    },
+    onSelectAnimeTrendingInterval: (interval: Interval) => {
+      setAppQuery({ ...appQuery, animeTrendingInterval: interval });
+    },
+    onSelectAnimeBestFilter: (filter: Filter) => {
+      setAppQuery({ ...appQuery, animeBestFilter: filter });
+    },
+  };
+
   return (
     <Grid templateColumns={{ base: "200px 1fr", xl: "300px 1fr" }}>
       <GridItem
@@ -42,7 +68,10 @@ function App() {
         width="100%"
         boxShadow="md"
       >
-        <NavBar />
+        <NavBar
+          categoryListProps={categoryListProps}
+          filterListProps={filterListProps}
+        />
       </GridItem>
       <Show above="md">
         <GridItem
@@ -53,29 +82,8 @@ function App() {
           p="8px"
           boxShadow="2xl"
         >
-          <CategoryList
-            onCategorySelect={(categoryName) => setCategoryName(categoryName)}
-            selectedCategoryName={categoryName}
-          />
-          <FilterList
-            categoryName={categoryName}
-            appQuery={appQuery}
-            onSelectMovieTrendingInterval={(interval) => {
-              setAppQuery({ ...appQuery, movieTrendingInterval: interval });
-            }}
-            onSelectTVSeriesTrendingInterval={(interval) => {
-              setAppQuery({ ...appQuery, tvSeriesTrendingInterval: interval });
-            }}
-            onSelectTVSeriesBestFilter={(filter) => {
-              setAppQuery({ ...appQuery, tvSeriesBestFilter: filter });
-            }}
-            onSelectAnimeTrendingInterval={(interval) => {
-              setAppQuery({ ...appQuery, animeTrendingInterval: interval });
-            }}
-            onSelectAnimeBestFilter={(filter) => {
-              setAppQuery({ ...appQuery, animeBestFilter: filter });
-            }}
-          />
+          <CategoryList {...categoryListProps} />
+          <FilterList {...filterListProps} />
         </GridItem>
       </Show>
       <GridItem
@@ -85,22 +93,22 @@ function App() {
         overflowY="auto"
         // bg="blue.300"w
       >
+        {categoryName === "Movies" && (
+          <MoviesTrendingContainer interval={appQuery.movieTrendingInterval} />
+        )}
+        {categoryName === "TV Series" && (
+          <TVSeriesBestContainer filter={appQuery.tvSeriesBestFilter} />
+        )}
         {categoryName === "TV Series" && (
           <TVSeriesTrendingContainer
             interval={appQuery.tvSeriesTrendingInterval}
           />
         )}
-        {categoryName === "TV Series" && (
-          <TVSeriesBestContainer filter={appQuery.tvSeriesBestFilter} />
-        )}
-        {categoryName === "Movies" && (
-          <MoviesTrendingContainer interval={appQuery.movieTrendingInterval} />
+        {categoryName === "Anime" && (
+          <AnimeBestContainer filter={appQuery.animeBestFilter} />
         )}
         {categoryName === "Anime" && (
           <AnimeTrendingContainer interval={appQuery.animeTrendingInterval} />
-        )}
-        {categoryName === "Anime" && (
-          <AnimeBestContainer filter={appQuery.animeBestFilter} />
         )}
       </GridItem>
     </Grid>
